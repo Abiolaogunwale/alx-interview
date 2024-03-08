@@ -1,35 +1,23 @@
 #!/usr/bin/python3
-""" pascal triangle
-"""
+"""Define pascal_triangle function"""
 
 
 def pascal_triangle(n):
-    """ returns pascal triangle
+    """Definition of pascal_triangle function
+      args: n the length of the triangle
+      Returns a list of lists of integers representing
+      the Pascal’s triangle
     """
+
     if n <= 0:
         return []
-    
-    pasTran = []
-    
-    for i in range(n):
-        # first element
-        my_List = [1]
-        if i == 0:                                              
-            pasTran.append(my_List)
-            continue
 
-                                                                
-        
-        k = i - 1
-        for j in range(len(pasTran[k])):
-        if j + 1 == len(pasTran[k]):
-                                                                    
-            # last element
-            my_List.append(1)
-            break
-                                            
-        # Add two previous values to get current next value 
-        nextVal = pasTran[k][j] + pasTran[k][j + 1]                 
-        my_List.append(nextVal) 
-    pasTran.append(my_List)
-return pasTran
+    pascal_triangle = [[1]]
+    while len(pascal_triangle) != n:
+        last_elmt = pascal_triangle[-1]
+        next_elmt = [1]
+        for i in range(0, len(last_elmt) - 1):
+            next_elmt.append(last_elmt[i] + last_elmt[i + 1])
+        next_elmt.append(1)
+        pascal_triangle.append(next_elmt)
+    return pascal_triangle
